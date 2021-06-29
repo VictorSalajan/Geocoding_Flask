@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a7150784378c446eae052b06c6376d8f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_a7150784378c446eae052b06c6376d8f" ></div>
+        
+</body>
+<script>    
+    
+            var map_a7150784378c446eae052b06c6376d8f = L.map(
+                "map_a7150784378c446eae052b06c6376d8f",
+                {
+                    center: [0, 0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 1,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e78ac994a4fc44fba30c081c7f7cd76b = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            var marker_3c5e48c12fbc4f5f88c5fb3fb2ae3295 = L.marker(
+                [52.3727598, 4.8936041],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_3c5e48c12fbc4f5f88c5fb3fb2ae3295.bindTooltip(
+                `<div>
+                     Netherlands: Amsterdam
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a82f429492804086a31ebba7b4b4fffc = L.marker(
+                [37.9839412, 23.7283052],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_a82f429492804086a31ebba7b4b4fffc.bindTooltip(
+                `<div>
+                     Greece: Athens
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_956fd4c793704f27aad592e8ba8521f2 = L.marker(
+                [52.5170365, 13.3888599],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_956fd4c793704f27aad592e8ba8521f2.bindTooltip(
+                `<div>
+                     Germany: Berlin
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6d5be9a623e6485f86c44bb27365bbbe = L.marker(
+                [48.1516988, 17.1093063],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_6d5be9a623e6485f86c44bb27365bbbe.bindTooltip(
+                `<div>
+                     Slovakia: Bratislava
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_75601d58038c477d80cea30e00862db1 = L.marker(
+                [50.8436709, 4.3674366933879565],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_75601d58038c477d80cea30e00862db1.bindTooltip(
+                `<div>
+                     Belgium: Brussels
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7478099e8b4f412f9268e2577df2c2f0 = L.marker(
+                [44.4361414, 26.1027202],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_7478099e8b4f412f9268e2577df2c2f0.bindTooltip(
+                `<div>
+                     Romania: Bucharest
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ade24e2517d04c9b85a41c2d31dc8e18 = L.marker(
+                [47.4979937, 19.0403594],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_ade24e2517d04c9b85a41c2d31dc8e18.bindTooltip(
+                `<div>
+                     Hungary: Budapest
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_da6872b0621d4aba83b41fcb917bf5fc = L.marker(
+                [55.6867243, 12.5700724],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_da6872b0621d4aba83b41fcb917bf5fc.bindTooltip(
+                `<div>
+                     Denmark: Copenhagen
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8c378eb0cbcd4c8eab792d04e711f48d = L.marker(
+                [53.3497645, -6.2602732],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_8c378eb0cbcd4c8eab792d04e711f48d.bindTooltip(
+                `<div>
+                     Republic of Ireland: Dublin
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_47f384fc0446450b88b938b49329addb = L.marker(
+                [60.1674881, 24.9427473],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_47f384fc0446450b88b938b49329addb.bindTooltip(
+                `<div>
+                     Finland: Helsinki
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_962ff4fc2458445cbb8c8bb22478e44c = L.marker(
+                [38.7077507, -9.1365919],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_962ff4fc2458445cbb8c8bb22478e44c.bindTooltip(
+                `<div>
+                     Portugal: Lisbon
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_060ea00ff2b1418eb2dc3c3e3dbf8e30 = L.marker(
+                [46.0499803, 14.5068602],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_060ea00ff2b1418eb2dc3c3e3dbf8e30.bindTooltip(
+                `<div>
+                     Slovenia: Ljubljana
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_39cd88bb54eb4f98b48599af54912068 = L.marker(
+                [49.6112768, 6.129799],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_39cd88bb54eb4f98b48599af54912068.bindTooltip(
+                `<div>
+                     Luxembourg: Luxembourg City
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_20a7fe9fdcaa4d26ac7223193f7dc7a6 = L.marker(
+                [40.4167047, -3.7035825],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_20a7fe9fdcaa4d26ac7223193f7dc7a6.bindTooltip(
+                `<div>
+                     Spain: Madrid
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c510d00fe9b6482abcd99e5ba779a4bf = L.marker(
+                [35.1739302, 33.364726],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_c510d00fe9b6482abcd99e5ba779a4bf.bindTooltip(
+                `<div>
+                     Cyprus: Nicosia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5b2cc513e2084ebe8ba166142b1209ec = L.marker(
+                [48.8566969, 2.3514616],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_5b2cc513e2084ebe8ba166142b1209ec.bindTooltip(
+                `<div>
+                     France: Paris
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ec5efabab7374f28b2126669591a35a3 = L.marker(
+                [50.0596288, 14.446459273258009],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_ec5efabab7374f28b2126669591a35a3.bindTooltip(
+                `<div>
+                     Czech Republic: Prague
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1e800db3226e43988f2a4ddc3b51a49d = L.marker(
+                [56.9493977, 24.1051846],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_1e800db3226e43988f2a4ddc3b51a49d.bindTooltip(
+                `<div>
+                     Latvia: Riga
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_199f5907f85c4f869ac69977f59917ef = L.marker(
+                [41.8933203, 12.4829321],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_199f5907f85c4f869ac69977f59917ef.bindTooltip(
+                `<div>
+                     Italy: Rome
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_961c17b9e09b4dfcb97932bf6fdef19c = L.marker(
+                [42.6978634, 23.3221789],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_961c17b9e09b4dfcb97932bf6fdef19c.bindTooltip(
+                `<div>
+                     Bulgaria: Sofia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1c503bdbb3874baea47284a9cf10b15e = L.marker(
+                [59.3251172, 18.0710935],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_1c503bdbb3874baea47284a9cf10b15e.bindTooltip(
+                `<div>
+                     Sweden: Stockholm
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_24fe7fd62a5e411fb3214b9408d1b7d5 = L.marker(
+                [59.4372155, 24.7453688],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_24fe7fd62a5e411fb3214b9408d1b7d5.bindTooltip(
+                `<div>
+                     Estonia: Tallinn
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_44ee1cba3060413e84445d348d956f01 = L.marker(
+                [35.8989818, 14.5136759],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_44ee1cba3060413e84445d348d956f01.bindTooltip(
+                `<div>
+                     Malta: Valletta
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a0e460996cb748fc8254f2f746665911 = L.marker(
+                [48.2083537, 16.3725042],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_a0e460996cb748fc8254f2f746665911.bindTooltip(
+                `<div>
+                     Austria: Vienna
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_47777b79998043c3a57615b9948b9ff7 = L.marker(
+                [54.6870458, 25.2829111],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_47777b79998043c3a57615b9948b9ff7.bindTooltip(
+                `<div>
+                     Lithuania: Vilnius
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d76e4670113a4b5e8ca855c1802c831e = L.marker(
+                [52.2319581, 21.0067249],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_d76e4670113a4b5e8ca855c1802c831e.bindTooltip(
+                `<div>
+                     Poland: Warsaw
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1611a392f0b84e93b8fab64ac622cd7e = L.marker(
+                [45.8131847, 15.9771774],
+                {}
+            ).addTo(map_a7150784378c446eae052b06c6376d8f);
+        
+    
+            marker_1611a392f0b84e93b8fab64ac622cd7e.bindTooltip(
+                `<div>
+                     Croatia: Zagreb
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
