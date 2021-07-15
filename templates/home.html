@@ -40,7 +40,9 @@ var message = 'Are you sure you want to continue? This may take a while (~one se
 <h1>Choose the type of Geomapping you want to explore</h1>
 
 
-<a href="{{ url_for('choose_points_nr') }}">Choose locations and display them on a map</a><br>
+<a href="{{ url_for('choose_points_nr') }}">
+  Choose locations and display them on a map
+</a><br>
 
 <a href="{{ url_for('display_euro_capitals') }}">
   Display a map of EU capitals
@@ -56,6 +58,11 @@ var message = 'Are you sure you want to continue? This may take a while (~one se
 
 <a href="{{ url_for('display_generate_country_cap_gdp_per_capita') }}" onclick="return confirm(message)">
   Generate & Display a map of countries, capitals & GDP per capita
+</a><br>
+
+<a href="{{ url_for('visualize_latitude_gdp') }}">
+  Visualize Scatterplot of Latitude & GDP per capita
 </a>
+
 
 {% endblock %}

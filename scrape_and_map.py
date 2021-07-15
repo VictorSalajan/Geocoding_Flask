@@ -4,6 +4,7 @@ from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 import folium
 from folium.plugins import MarkerCluster
+from pandas.io import feather_format
 from unidecode import unidecode
 import pandas as pd
 import numpy as np
@@ -41,7 +42,18 @@ def generate_euro_capitals():
     
     m.save('templates/european_capitals.html')
 
-def generate_country_cap_gdp_per_capita():
+def create_country_df():
+    d = {
+        'country': [], 
+        'gdp_per_capita': [], 
+        'capital': [],
+        'latitude': [],
+        'longitude': [],
+        }
+    df = pd.DataFrame(data=d, index=None)
+    df.to_csv('country_db.csv')
+
+def scrape_country_gdp():
     url = 'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'
     page = urlopen(url)
     html = page.read().decode('utf-8')
@@ -66,42 +78,66 @@ def generate_country_cap_gdp_per_capita():
                 elif td == tds[-1]:
                     gdp_per_capita.append(np.nan)
                     break
-    d = {'country': countries, 'gdp_per_capita': gdp_per_capita, 'capital': np.nan}
-    df = pd.DataFrame(data=d)
+    df = pd.read_csv('country_db.csv', index_col=0)
+    df.country, df.gdp_per_capita = pd.Series(countries), pd.Series(gdp_per_capita)
+    df.to_csv('country_db.csv')
 
-    # Scrape capitals
+def scrape_capitals():
     url = 'https://www.worlddata.info/capital-cities.php'
     page = urlopen(url)
     html = page.read().decode('utf-8')
     soup = BeautifulSoup(html, 'html.parser')
-
+    
     rows = soup.find_all('tr')
 
-    df['country'] = df['country'].apply(lambda x: unidecode(x))
-    df.loc[df['country']=='Macau', ['country']] = 'Macao'
-    df.loc[df['country']=='Czech Republic', ['country']] = 'Czechia'
-    df.loc[df['country']=='Georgia (country)', ['country']] = 'Georgia'
-
+    countries, capitals = [], []
     for row in rows:
         table_data = row.find_all('td')
         try:
             country = table_data[0].find('a').contents[0]
             capital = table_data[1].contents[0]
-            if any(country in c for c in df.country.to_list()):
-                index = df.index[df['country'].str.contains(country)]
-                df.loc[index, 'capital'] = capital
+            countries.append(country)
+            capitals.append(capital)
         except:
             pass
+    return countries, capitals
 
-    m = folium.Map()
-    for country, capital, gdp in zip(df.country, df.capital, df.gdp_per_capita):
+def match_country_capital():
+    df = pd.read_csv('country_db.csv', index_col=0)
+    df['country'] = df['country'].apply(lambda x: unidecode(x))
+    df.loc[df['country']=='Macau', ['country']] = 'Macao'
+    df.loc[df['country']=='Czech Republic', ['country']] = 'Czechia'
+    df.loc[df['country']=='Georgia (country)', ['country']] = 'Georgia'
+
+    countries, capitals = scrape_capitals()
+
+    for country, capital in zip(countries, capitals):
+        if any(country in c for c in df.country.to_list()):
+            index = df.index[df['country'].str.contains(country)]
+            df.loc[index, 'capital'] = capital
+    df.to_csv('country_db.csv')
+
+def geocode_coordinates():
+    df = pd.read_csv('country_db.csv')
+    for country, capital in zip(df.country, df.capital):
         location = {'country': country, 'city': capital}
         try:
             coordinates = geocode(location)
             lat, lon = coordinates.point.latitude, coordinates.point.longitude
+            df.loc[df.country == country, 'latitude'] = lat
+            df.loc[df.country == country, 'longitude'] = lon
         except:
             coordinates = geocode(country)
             lat, lon = coordinates.point.latitude, coordinates.point.longitude
+            df.loc[df.country == country, 'latitude'] = lat
+            df.loc[df.country == country, 'longitude'] = lon
+    df.to_csv('country_db.csv')
+
+def geomap_country_gdp():
+    df = pd.read_csv('country_db.csv')
+    m = folium.Map()
+    for country, capital, gdp in zip(df.country, df.capital, df.gdp_per_capita):
+        lat, lon = df.loc[df.country == country, 'latitude'], df.loc[df.country== country, 'longitude']
         tooltip = f'{country}, {capital}: ${gdp}'
         folium.Marker([lat, lon], tooltip=tooltip).add_to(m)
     m.save('templates/country_cap_gdp_per_capita.html')

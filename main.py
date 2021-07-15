@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 from os import path
 from scrape_and_map import *
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
 
 
 app = Flask(__name__)
@@ -55,13 +58,41 @@ def display_generate_euro_capitals():
 @app.route('/countries_capitals_gdp_per_capita/')
 def display_country_cap_gdp_per_capita():
     if not(path.exists('templates/country_cap_gdp_per_capita.html')):
-        return 'No map exists. Go to "Generate & Display a map of countries, capitals & GDP per capita" link'
+        return 'No map exists. Go to "Generate & Display a map of countries, capitals & GDP per capital" link'
     return render_template('country_cap_gdp_per_capita.html')
 
 @app.route('/display_generate_countries_capitals_gdp_per_capita/')
 def display_generate_country_cap_gdp_per_capita():
-    generate_country_cap_gdp_per_capita()
+    """ Creates country DataFrame, Rescrapes & matches data, generates coordinates & maps them """
+    create_country_df()
+    scrape_country_gdp()
+    match_country_capital()     # calls scrape_capitals()
+    geocode_coordinates()
+    geomap_country_gdp()
     return render_template('country_cap_gdp_per_capita.html')
+
+
+@app.route('/visualize_latitude_gdp_relationship/')
+def visualize_latitude_gdp():
+    df = pd.read_csv('country_db.csv')
+    df.dropna(inplace=True)
+    df['gdp_per_capita'] = df['gdp_per_capita'].apply(lambda x: int(x.replace(',', '')))
+    x, y = df['latitude'], df['gdp_per_capita']
+    correlation, p_value = stats.pearsonr(x, y)
+
+    sns.scatterplot(x='latitude', y='gdp_per_capita', size="gdp_per_capita", sizes=(30, 800), data=df, legend=None)
+    plt.savefig('static/latitude_gdp_relationship.jpg')
+
+    d = {0.001: '< .001', 0.01: '< .01', 0.05: '< .05'}
+    for k, v in d.items():
+        if p_value < k:
+            p_value = v
+            break
+        else:
+            p_value = round(p_value, 2)
+
+    context = {'correlation': format(correlation, '.2f'), 'p_value': p_value}
+    return render_template('latitude_gdp_relationship.html', **context)
 
 
 if __name__ == "__main__":
