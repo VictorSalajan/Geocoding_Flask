@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from geopy.geocoders import Nominatim
@@ -8,7 +9,8 @@ from pandas.io import feather_format
 from unidecode import unidecode
 import pandas as pd
 import numpy as np
-
+from flask import request, redirect, url_for
+from os import path
 
 geolocator = Nominatim(user_agent='flask_geo_app')
 geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
@@ -141,3 +143,10 @@ def geomap_country_gdp():
         tooltip = f'{country}, {capital}: ${gdp}'
         folium.Marker([lat, lon], tooltip=tooltip).add_to(m)
     m.save('templates/country_cap_gdp_per_capita.html')
+
+def gen_geomap_country_gdp():
+    create_country_df()
+    scrape_country_gdp()
+    match_country_capital()     # calls scrape_capitals()
+    geocode_coordinates()
+    geomap_country_gdp()
