@@ -56,13 +56,14 @@ def display_generate_euro_capitals():
 @app.route('/countries_capitals_gdp_per_capita/')
 def display_country_cap_gdp_per_capita():
     if not(path.exists('templates/country_cap_gdp_per_capita.html')):
-        return 'No map exists. Go to "Generate & Display a map of countries, capitals & GDP per capital" link'
+        return 'No map exists. Go to "Generate & Display a map of countries, capitals & GDP per capita" link'
     return render_template('country_cap_gdp_per_capita.html')
 
 @app.route('/display_generate_countries_capitals_gdp_per_capita/')
 def display_generate_country_cap_gdp_per_capita():
     """ Creates country DataFrame, Rescrapes & matches data, generates coordinates & maps them """
-    gen_geomap_country_gdp()
+    df = CountryData('country_db.csv')
+    CountryData.gen_geomap_country_gdp(df)
     return render_template('country_cap_gdp_per_capita.html')
 
 @app.route('/visualize_latitude_gdp_relationship/')

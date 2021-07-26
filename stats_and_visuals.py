@@ -15,7 +15,6 @@ def clean_df():
 
 def gen_scatter_latitude_gdp():
     df = clean_df()
-    x, y = df['latitude'], df['gdp_per_capita']
 
     sns.scatterplot(x='latitude', y='gdp_per_capita', size="gdp_per_capita", sizes=(30, 800), data=df, legend=None)
     plt.xlabel('latitude of capital city')
