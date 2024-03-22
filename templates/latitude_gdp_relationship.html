@@ -13,4 +13,9 @@
 <img src="{{ url_for('static', filename='latitude_gdp_relationship.jpg') }}" 
 alt="Latitude and GDP per capita Regression Plot">
 
+    <h1>Linear Regression Metrics</h1>
+    <p>Mean Absolute Error: {{ mae }}</p>
+    <p>Root Mean Squared Error: {{ rmse }}</p>
+    <p>R^2 (Coefficient of Determination): {{ coeff }}</p>
+
 {% endblock %}

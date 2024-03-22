@@ -8,6 +8,7 @@ def clean_df():
     """ stats & visualizations will always call this functions; 
         geomapping will use a more raw form of data, for better or more complete visuals """
     df = pd.read_csv('country_db.csv')
+    df.dropna(axis=1, how='all', inplace=True)        # drop column if all vals are null
     df.dropna(inplace=True)
     df['gdp_per_capita'] = df['gdp_per_capita'].apply(lambda x: int(x.replace(',', '')))
 
@@ -17,6 +18,7 @@ def gen_scatter_latitude_gdp():
     df = clean_df()
 
     sns.scatterplot(x='latitude', y='gdp_per_capita', size="gdp_per_capita", sizes=(30, 800), data=df, legend=None)
+    sns.regplot(x='latitude', y='gdp_per_capita', data=df)
     plt.xlabel('latitude of capital city')
     plt.savefig('static/latitude_gdp_relationship.jpg')
     plt.close()

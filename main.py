@@ -1,10 +1,15 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for
 from os import path
 from scrape_and_map import *
 from stats_and_visuals import *
+from linear_regression import *
 
 
-app = Flask(__name__)
+crtDir = os.getcwd()
+static_path = os.path.join('static')
+app = Flask(__name__, static_folder=static_path)
 
 @app.route('/')
 def home():
@@ -70,7 +75,10 @@ def display_generate_country_cap_gdp_per_capita():
 def visualize_latitude_gdp():
     gen_scatter_latitude_gdp()    # generate & save scatterplot image
     correlation, p_value = pearsonr_latitude_gdp()
-    context = {'correlation': correlation, 'p_value': p_value}
+    # linear regression metrics
+    mae, rmse, coeff = metrics_pipeline()
+
+    context = {'correlation': correlation, 'p_value': p_value, 'mae': mae, 'rmse': rmse, 'coeff': coeff}
     return render_template('latitude_gdp_relationship.html', **context)
 
 
